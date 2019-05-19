@@ -5,6 +5,8 @@ import 'babylonjs-loaders'
 import 'babylonjs-procedural-textures'
 import 'babylonjs-post-process'
 
+// BABYLON.Database.IDBStorageEnabled = true;
+
 class Game {
 
   private _canvas: HTMLCanvasElement;
@@ -21,6 +23,7 @@ class Game {
 
   createScene(): void {
 
+    //this._scene = scene !== undefined ? scene : new BABYLON.Scene(this._engine);
     this._scene = new BABYLON.Scene(this._engine);
     this._camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 0.5, BABYLON.Vector3.Zero(), this._scene);
     var light0 = new BABYLON.PointLight("Omni0", new BABYLON.Vector3(0, 10, 0), this._scene);
@@ -90,8 +93,6 @@ class Game {
    this._scene.beginAnimation(cameraTarget, 0, 120, true, 0.1);
 
     //Creation of a material with an image texture
-    var materialSphere3 = new BABYLON.StandardMaterial("texture3", this._scene);
-    materialSphere3.diffuseTexture = new BABYLON.Texture("textures/1497148829305.png", this._scene);
     let myMesh
     let alpha = 0;
 
@@ -112,10 +113,6 @@ class Game {
       //myMesh.material = wireframeMat
 
       myMesh.position.y -= 5
-
-
-
-
 
       this._scene.registerBeforeRender(() => {
         light0.position = new BABYLON.Vector3(10 * Math.sin(alpha), 0, 10 * Math.cos(alpha));
